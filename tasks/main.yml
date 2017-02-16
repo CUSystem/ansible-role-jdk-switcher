@@ -1,0 +1,19 @@
+---
+
+- name: template over the change script
+  template:
+    src: templates/jdk-changeover.sh.j2
+    dest:  "{{ scripts_folder }}/jdk-changeover.sh"
+    owner: "{{ script_owner }}"
+    group: "{{ script_group }}" 
+    mode: u+x
+
+- name: run the script
+  command: "{{ scripts_folder }}/jdk-changeover.sh"
+  become: yes
+  become_user: "{{ script_owner }}"
+
+- name: remove the file
+  file:
+    path: "{{ scripts_folder }}/jdk-changeover.sh"
+    state: absent

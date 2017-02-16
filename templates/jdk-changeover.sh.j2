@@ -1,0 +1,18 @@
+#!/bin/bash
+#
+#Switch out the jdk with the symbolic link 'default'
+#Oracle's reconfig and other scripts don't respect the link.
+#
+newjdk = {{ new_jdk_version }}
+for oldjdk in {{ jdk_version_string }}
+do
+  echo "Fixing $oldjdk"
+  for x in xml properties wsdl py url prop sh
+  do
+    filespec="*.$x"
+    echo "  - Working on $filespec files"
+{% for location in scrub_locations %}
+    find {{ location }} -type f -name "$filespec" -exec sed -i "s/\/usr\/java\/$oldjdk/\/usr\/java\/$newjdk/g" {} \;
+{% endfor %}
+  done
+done
