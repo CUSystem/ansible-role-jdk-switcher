@@ -27,9 +27,8 @@ Example Playbook
       - /u01/app/oracle
       - /opt/oracle/12212
     scripts_home: "/tmp"
-    jdk_version_string: "jdk1.8.0_101"
-    #Can also submit one long string to search and replace
-    #jdk_version_string: "jdk1.8.0_101 jdk1.8.0_111"
+    old_jdk_version: "jdk1.8.0_101"
+    new_jdk_version: "default"
   roles:
     - role: staylorx.jdk-switcher
 
@@ -38,5 +37,5 @@ Example Playbook
 License
 -------
 
-BSD, MIT
+Apache 2
 

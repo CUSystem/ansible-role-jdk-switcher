@@ -2,7 +2,7 @@
 
 scrub_locations: "/home/oracle"
 scripts_folder: "/tmp"
-jdk_version_string: "jdk1.8.0-121"
+old_jdk_version: "jdk1.8.0_101"
 new_jdk_version: "default"
 script_owner: "oracle"
 script_group: "oinstall"
