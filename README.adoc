@@ -1,17 +1,14 @@
-ansible-role-jdk-switcher
-=========
+=== ansible-role-jdk-switcher
 
 A simple Ansible role to swap out JDK strings in scripts and XML.
 
-Requirements
-------------
+== Requirements
 
 This is almost always only used on WebLogic installs since pack and unpack don't also respect the symbolic links.
 
 The template script assumes the java is installed under /usr/java/<whatever> with the 'whatever' being replaced.
 
-Example Playbook
-----------------
+== Example Playbook
 
 [source,yaml]
 ----
@@ -34,8 +31,7 @@ Example Playbook
 
 ----
 
-License
--------
+== License
 
 Apache 2
 
