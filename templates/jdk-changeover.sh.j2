@@ -3,6 +3,11 @@
 #Switch out the jdk with the symbolic link 'default'
 #Oracle's reconfig and other scripts don't respect the link.
 #
+cd {{ location }}
+if [ $? -ne 0 ] ; then
+  echo "$0 ERROR could not cd {{ location }}"
+  exit 1
+fi
 newjdk={{ new_jdk_version }}
 oldjdk={{ old_jdk_version }}
 echo "Fixing $oldjdk"
