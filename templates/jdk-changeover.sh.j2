@@ -17,6 +17,7 @@ do
     echo "$0 ERROR could not cd {{ location }}"
     exit 1
   fi
+  find {{ location }} -type f -name "$filespec" -print
   find {{ location }} -type f -name "$filespec" -exec sed -i "s/\/usr\/java\/$oldjdk/\/usr\/java\/$newjdk/g" {} \;
 {% endfor %}
 done
