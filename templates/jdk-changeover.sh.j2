@@ -3,11 +3,6 @@
 #Switch out the jdk with the symbolic link 'default'
 #Oracle's reconfig and other scripts don't respect the link.
 #
-cd {{ location }}
-if [ $? -ne 0 ] ; then
-  echo "$0 ERROR could not cd {{ location }}"
-  exit 1
-fi
 newjdk={{ new_jdk_version }}
 oldjdk={{ old_jdk_version }}
 echo "Fixing $oldjdk"
@@ -16,6 +11,12 @@ do
   filespec="*.$x"
   echo "  - Working on $filespec files"
 {% for location in scrub_locations %}
+  # find needs to write temp files, so ensure we are in a writable dir
+  cd {{ location }}
+  if [ $? -ne 0 ] ; then
+    echo "$0 ERROR could not cd {{ location }}"
+    exit 1
+  fi
   find {{ location }} -type f -name "$filespec" -exec sed -i "s/\/usr\/java\/$oldjdk/\/usr\/java\/$newjdk/g" {} \;
 {% endfor %}
 done
